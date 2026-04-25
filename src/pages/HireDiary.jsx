@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 
+const FOOTER_EMAIL = "twodevsstudios@gmail.com";
+
 const featureCards = [
   {
     title: "Track Applications",
@@ -250,6 +252,10 @@ function HireDiary() {
     loadFeatureRequests();
   }, []);
 
+  useEffect(() => {
+    document.title = "HireDiary · Two Devs Studio";
+  }, []);
+
   const handleContactChange = (event) => {
     const { name, value } = event.target;
     setContactForm((current) => ({ ...current, [name]: value }));
@@ -397,48 +403,65 @@ function HireDiary() {
   };
 
   return (
-    <div className="site">
-      <header className="hero">
-        <nav className="nav">
-          <div className="brand">
+    <div className="site landing">
+      <header className="landing-hero">
+        <nav className="landing-nav">
+          <Link className="landing-brand" to="/">
             <img
-              className="brand-logo"
+              className="landing-brand-logo"
               src="/hirediary-logo.webp"
               alt="HireDiary logo"
             />
             <span>HireDiary</span>
-          </div>
-          <div className="nav-links">
+          </Link>
+
+          <div className="landing-nav-links">
             <Link to="/">Studio</Link>
             <a href="#features">Features</a>
             <a href="#vote">Vote</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <a
-              className="nav-cta"
-              href="https://play.google.com/store/apps/details?id=com.twodevsstudio.hirediary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Google Play
-            </a>
           </div>
+
+          <a
+            className="landing-nav-cta"
+            href="https://play.google.com/store/apps/details?id=com.twodevsstudio.hirediary"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Google Play
+          </a>
         </nav>
 
-        <div className="hero-content">
-          <div className="hero-copy">
-            <p className="eyebrow">Trusted by job seekers</p>
-            <h1>Organize your path to the perfect job.</h1>
-            <p className="subtitle">
+        <div className="landing-hero-grid">
+          <div className="landing-hero-copy">
+            <div className="landing-badge" aria-label="Trusted by job seekers">
+              <span className="landing-badge-icon" aria-hidden="true">
+                ✓
+              </span>
+              <span>Trusted by job seekers</span>
+            </div>
+
+            <p className="landing-goldline">
+              Track applications. Follow up on time. Stay organized.
+            </p>
+
+            <h1 className="landing-title">
+              Organize your path to the{" "}
+              <span className="landing-title-accent">perfect job.</span>
+            </h1>
+
+            <p className="landing-subtitle">
               HireDiary is a simple way to track job applications, follow-ups,
               and interview progress. No more messy spreadsheets.
             </p>
-            <div className="hero-actions">
-              <a className="button primary" href="#features">
+
+            <div className="landing-actions">
+              <a className="landing-button primary" href="#features">
                 Explore Features
               </a>
               <a
-                className="button ghost"
+                className="landing-button ghost"
                 href="https://play.google.com/store/apps/details?id=com.twodevsstudio.hirediary"
                 target="_blank"
                 rel="noreferrer"
@@ -447,268 +470,314 @@ function HireDiary() {
               </a>
             </div>
           </div>
-          <div className="hero-image-wrap">
-            <img src="/hero-graphic.png" alt="HireDiary feature preview" />
+
+          <div className="landing-hero-media" aria-hidden="true">
+            <div className="landing-hero-card hirediary-hero-card">
+              <img
+                className="landing-hero-illustration hirediary-hero-illustration"
+                src="/hero-graphic.png"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </header>
 
-      <main>
-        <section className="section" id="features">
-          <p className="section-eyebrow">Simplify your job search</p>
-          <h2>Everything you need in one place</h2>
-          <p className="section-subtitle">
-            Track progress, capture job posts, and keep your next steps clear.
-          </p>
-          <div className="feature-grid">
-            {featureCards.map((item) => (
-              <div key={item.title} className="feature-card">
-                <div className="feature-icon">
-                  <FeatureIcon name={item.icon} />
+      <main className="landing-main">
+        <section className="landing-band" id="features">
+          <div className="landing-container">
+            <p className="section-eyebrow">Simplify your job search</p>
+            <h2>Everything you need in one place</h2>
+            <p className="section-subtitle">
+              Track progress, capture job posts, and keep your next steps clear.
+            </p>
+            <div className="feature-grid">
+              {featureCards.map((item) => (
+                <div key={item.title} className="feature-card">
+                  <div className="feature-icon">
+                    <FeatureIcon name={item.icon} />
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="section" id="vote">
-          <div className="split">
-            <div>
-              <p className="section-eyebrow">Shape the future</p>
-              <h2>Vote on what we build next</h2>
-              <p className="section-subtitle">
-                Suggest a feature and vote for existing requests.
-              </p>
-              {!isSupabaseConfigured && (
-                <p className="alert error">
-                  Configure Supabase in `.env.local` before using this section.
+        <section className="landing-band landing-band--alt" id="vote">
+          <div className="landing-container">
+            <div className="split">
+              <div>
+                <p className="section-eyebrow">Shape the future</p>
+                <h2>Vote on what we build next</h2>
+                <p className="section-subtitle">
+                  Suggest a feature and vote for existing requests.
                 </p>
-              )}
-              <form className="contact-form" onSubmit={handleFeatureSubmit}>
-                <label>
-                  Feature title
-                  <input
-                    name="title"
-                    type="text"
-                    value={featureForm.title}
-                    onChange={handleFeatureChange}
-                    placeholder="Example: Interview prep checklist"
-                    required
-                  />
-                </label>
-
-                <label>
-                  Details (optional)
-                  <textarea
-                    name="description"
-                    rows="4"
-                    value={featureForm.description}
-                    onChange={handleFeatureChange}
-                    placeholder="What should this feature do?"
-                  />
-                </label>
-
-                <button
-                  type="submit"
-                  disabled={featureActionStatus.loading || !isSupabaseConfigured}
-                >
-                  {featureActionStatus.loading
-                    ? "Sending..."
-                    : "Submit Suggestion"}
-                </button>
-              </form>
-
-              {featureActionStatus.success && (
-                <p className="alert success">{featureActionStatus.success}</p>
-              )}
-              {featureActionStatus.error && (
-                <p className="alert error">{featureActionStatus.error}</p>
-              )}
-            </div>
-            <div>
-              {featureListStatus.loading && <p>Loading feature requests...</p>}
-              {!featureListStatus.loading && featureListStatus.error && (
-                <p className="alert error">{featureListStatus.error}</p>
-              )}
-
-              {!featureListStatus.loading &&
-                !featureListStatus.error &&
-                featureRequests.length === 0 && (
-                  <p>
-                    No approved feature requests yet. Be the first to add one.
+                {!isSupabaseConfigured && (
+                  <p className="alert error">
+                    Configure Supabase in `.env.local` before using this
+                    section.
                   </p>
                 )}
+                <form className="contact-form" onSubmit={handleFeatureSubmit}>
+                  <label>
+                    Feature title
+                    <input
+                      name="title"
+                      type="text"
+                      value={featureForm.title}
+                      onChange={handleFeatureChange}
+                      placeholder="Example: Interview prep checklist"
+                      required
+                    />
+                  </label>
 
-              {!featureListStatus.loading &&
-                !featureListStatus.error &&
-                featureRequests.length > 0 && (
-                  <ul className="feature-list">
-                    {featureRequests.map((item) => (
-                      <li key={item.id} className="feature-list-item">
-                        <div className="feature-content">
-                          <h3>{item.title}</h3>
-                          {item.description && <p>{item.description}</p>}
-                          <p className="feature-meta">
-                            Status:{" "}
-                            <span className="feature-status">
-                              {(item.status || "planned").replaceAll("_", " ")}
-                            </span>{" "}
-                            | Votes: {item.votes ?? 0}
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => handleVote(item.id)}
-                          disabled={
-                            featureActionStatus.votingId === item.id ||
-                            !isSupabaseConfigured
-                          }
-                        >
-                          {featureActionStatus.votingId === item.id
-                            ? "Voting..."
-                            : "Upvote"}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              {!featureListStatus.loading && !featureListStatus.error && (
-                <p className="section-subtitle">
-                  Only approved suggestions are listed here.
-                </p>
-              )}
-            </div>
-          </div>
-        </section>
+                  <label>
+                    Details (optional)
+                    <textarea
+                      name="description"
+                      rows="4"
+                      value={featureForm.description}
+                      onChange={handleFeatureChange}
+                      placeholder="What should this feature do?"
+                    />
+                  </label>
 
-        <section className="section" id="about">
-          <p className="section-eyebrow">The team behind the app</p>
-          <h2>Meet TwoDevsStudio</h2>
-          <p className="section-subtitle">
-            We are a two-person independent studio focused on practical,
-            intuitive apps.
-          </p>
-          <div className="about-grid">
-            {showStudioLogo && (
-              <img
-                className="studio-logo"
-                src="/twodevsstudio.png"
-                alt="TwoDevsStudio team artwork"
-                loading="lazy"
-                onError={() => setShowStudioLogo(false)}
-              />
-            )}
-            <div>
-              {team.map((line) => (
-                <p key={line}>{line}</p>
-              ))}
-              <div className="stats">
-                {stats.map((item) => (
-                  <div key={item.label} className="stat">
-                    <p className="stat-value">{item.value}</p>
-                    <p className="stat-label">{item.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section" id="contact">
-          <div className="contact-wrap">
-            <div className="contact-info">
-              <p className="section-eyebrow">Get in touch</p>
-              <h2>Contact TwoDevsStudio</h2>
-              <p>
-                Share bug reports, feature ideas, or feedback and we will review
-                it for the next versions of HireDiary.
-              </p>
-              <div className="contact-details">
-                <p className="contact-line">
-                  <span className="contact-icon">
-                    <ContactIcon name="mail" />
-                  </span>
-                  twodevsstudios@gmail.com
-                </p>
-                <p className="contact-line">
-                  <span className="contact-icon">
-                    <ContactIcon name="location" />
-                  </span>
-                  Europe (Remote)
-                </p>
-              </div>
-            </div>
-            <div className="contact-form-card">
-              <form className="contact-form" onSubmit={handleContactSubmit}>
-                <label>
-                  Name
-                  <input
-                    name="name"
-                    type="text"
-                    value={contactForm.name}
-                    onChange={handleContactChange}
-                    placeholder="Your name"
-                  />
-                </label>
-
-                <label>
-                  Email
-                  <input
-                    name="email"
-                    type="email"
-                    value={contactForm.email}
-                    onChange={handleContactChange}
-                    placeholder="your@email.com"
-                  />
-                </label>
-
-                <label>
-                  Message type
-                  <select
-                    name="type"
-                    value={contactForm.type}
-                    onChange={handleContactChange}
+                  <button
+                    type="submit"
+                    disabled={
+                      featureActionStatus.loading || !isSupabaseConfigured
+                    }
                   >
-                    <option>Feature request</option>
-                    <option>Bug report</option>
-                    <option>General feedback</option>
-                  </select>
-                </label>
+                    {featureActionStatus.loading
+                      ? "Sending..."
+                      : "Submit Suggestion"}
+                  </button>
+                </form>
 
-                <label>
-                  Message
-                  <textarea
-                    name="message"
-                    rows="6"
-                    value={contactForm.message}
-                    onChange={handleContactChange}
-                    placeholder="Tell us what feature we should build next..."
-                    required
-                  />
-                </label>
+                {featureActionStatus.success && (
+                  <p className="alert success">{featureActionStatus.success}</p>
+                )}
+                {featureActionStatus.error && (
+                  <p className="alert error">{featureActionStatus.error}</p>
+                )}
+              </div>
+              <div>
+                {featureListStatus.loading && (
+                  <p>Loading feature requests...</p>
+                )}
+                {!featureListStatus.loading && featureListStatus.error && (
+                  <p className="alert error">{featureListStatus.error}</p>
+                )}
 
-                <button
-                  type="submit"
-                  disabled={contactStatus.loading || !isSupabaseConfigured}
-                >
-                  {contactStatus.loading ? "Sending..." : "Send Message"}
-                </button>
-              </form>
-              {contactStatus.success && (
-                <p className="alert success">{contactStatus.success}</p>
+                {!featureListStatus.loading &&
+                  !featureListStatus.error &&
+                  featureRequests.length === 0 && (
+                    <p>
+                      No approved feature requests yet. Be the first to add one.
+                    </p>
+                  )}
+
+                {!featureListStatus.loading &&
+                  !featureListStatus.error &&
+                  featureRequests.length > 0 && (
+                    <ul className="feature-list">
+                      {featureRequests.map((item) => (
+                        <li key={item.id} className="feature-list-item">
+                          <div className="feature-content">
+                            <h3>{item.title}</h3>
+                            {item.description && <p>{item.description}</p>}
+                            <p className="feature-meta">
+                              Status:{" "}
+                              <span className="feature-status">
+                                {(item.status || "planned").replaceAll(
+                                  "_",
+                                  " "
+                                )}
+                              </span>{" "}
+                              | Votes: {item.votes ?? 0}
+                            </p>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleVote(item.id)}
+                            disabled={
+                              featureActionStatus.votingId === item.id ||
+                              !isSupabaseConfigured
+                            }
+                          >
+                            {featureActionStatus.votingId === item.id
+                              ? "Voting..."
+                              : "Upvote"}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                {!featureListStatus.loading && !featureListStatus.error && (
+                  <p className="section-subtitle">
+                    Only approved suggestions are listed here.
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-band" id="about">
+          <div className="landing-container">
+            <p className="section-eyebrow">The team behind the app</p>
+            <h2>Meet TwoDevsStudio</h2>
+            <p className="section-subtitle">
+              We are a two-person independent studio focused on practical,
+              intuitive apps.
+            </p>
+            <div className="about-grid">
+              {showStudioLogo && (
+                <img
+                  className="studio-logo"
+                  src="/twodevsstudio.png"
+                  alt="TwoDevsStudio team artwork"
+                  loading="lazy"
+                  onError={() => setShowStudioLogo(false)}
+                />
               )}
-              {contactStatus.error && (
-                <p className="alert error">{contactStatus.error}</p>
-              )}
+              <div>
+                {team.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+                <div className="stats">
+                  {stats.map((item) => (
+                    <div key={item.label} className="stat">
+                      <p className="stat-value">{item.value}</p>
+                      <p className="stat-label">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-band landing-band--alt" id="contact">
+          <div className="landing-container">
+            <div className="contact-wrap">
+              <div className="contact-info">
+                <p className="section-eyebrow">Get in touch</p>
+                <h2>Contact TwoDevsStudio</h2>
+                <p>
+                  Share bug reports, feature ideas, or feedback and we will
+                  review it for the next versions of HireDiary.
+                </p>
+                <div className="contact-details">
+                  <p className="contact-line">
+                    <span className="contact-icon">
+                      <ContactIcon name="mail" />
+                    </span>
+                    twodevsstudios@gmail.com
+                  </p>
+                  <p className="contact-line">
+                    <span className="contact-icon">
+                      <ContactIcon name="location" />
+                    </span>
+                    Europe (Remote)
+                  </p>
+                </div>
+              </div>
+              <div className="contact-form-card">
+                <form className="contact-form" onSubmit={handleContactSubmit}>
+                  <label>
+                    Name
+                    <input
+                      name="name"
+                      type="text"
+                      value={contactForm.name}
+                      onChange={handleContactChange}
+                      placeholder="Your name"
+                    />
+                  </label>
+
+                  <label>
+                    Email
+                    <input
+                      name="email"
+                      type="email"
+                      value={contactForm.email}
+                      onChange={handleContactChange}
+                      placeholder="your@email.com"
+                    />
+                  </label>
+
+                  <label>
+                    Message type
+                    <select
+                      name="type"
+                      value={contactForm.type}
+                      onChange={handleContactChange}
+                    >
+                      <option>Feature request</option>
+                      <option>Bug report</option>
+                      <option>General feedback</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    Message
+                    <textarea
+                      name="message"
+                      rows="6"
+                      value={contactForm.message}
+                      onChange={handleContactChange}
+                      placeholder="Tell us what feature we should build next..."
+                      required
+                    />
+                  </label>
+
+                  <button
+                    type="submit"
+                    disabled={contactStatus.loading || !isSupabaseConfigured}
+                  >
+                    {contactStatus.loading ? "Sending..." : "Send Message"}
+                  </button>
+                </form>
+                {contactStatus.success && (
+                  <p className="alert success">{contactStatus.success}</p>
+                )}
+                {contactStatus.error && (
+                  <p className="alert error">{contactStatus.error}</p>
+                )}
+              </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} TwoDevsStudio. All rights reserved.</p>
+      <footer className="landing-footer">
+        <div className="landing-container landing-footer-grid">
+          <div>
+            <p className="landing-footer-brand">TwoDevsStudio</p>
+            <p className="landing-footer-muted">
+              Focused apps built by a small team.
+            </p>
+          </div>
+
+          <div>
+            <p className="landing-footer-title">Contact</p>
+            <p className="landing-footer-link">
+              <a href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
+            </p>
+          </div>
+
+          <div>
+            <p className="landing-footer-title">Location</p>
+            <p className="landing-footer-muted">Europe (Remote)</p>
+          </div>
+        </div>
+
+        <div className="landing-container landing-footer-bottom">
+          <p>© {new Date().getFullYear()} TwoDevsStudio. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

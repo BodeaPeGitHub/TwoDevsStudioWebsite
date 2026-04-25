@@ -1,0 +1,66 @@
+<svg width="980" height="560" viewBox="0 0 980 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#eaf3ff" stop-opacity="0.88"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b6aa6"/>
+      <stop offset="1" stop-color="#1cc7ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#0f2130" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="56" width="860" height="448" rx="26" fill="url(#panel)" stroke="#e3edf6" stroke-width="2"/>
+
+    <!-- Top bar -->
+    <rect x="90" y="86" width="800" height="54" rx="16" fill="#ffffff" stroke="#e3edf6"/>
+    <circle cx="122" cy="113" r="8" fill="#b5d6f2"/>
+    <circle cx="148" cy="113" r="8" fill="#e6f1fb"/>
+    <circle cx="174" cy="113" r="8" fill="#b5d6f2"/>
+    <rect x="214" y="102" width="190" height="22" rx="11" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="734" y="100" width="136" height="26" rx="13" fill="url(#accent)" opacity="0.9"/>
+
+    <!-- Left sidebar -->
+    <rect x="90" y="158" width="172" height="318" rx="18" fill="#ffffff" stroke="#e3edf6"/>
+    <rect x="112" y="184" width="128" height="20" rx="10" fill="#e6f1fb"/>
+    <rect x="112" y="222" width="128" height="14" rx="7" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="112" y="250" width="128" height="14" rx="7" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="112" y="278" width="128" height="14" rx="7" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="112" y="320" width="128" height="44" rx="16" fill="#2b6aa6" opacity="0.12" stroke="#b5d6f2"/>
+    <rect x="112" y="380" width="128" height="14" rx="7" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="112" y="408" width="128" height="14" rx="7" fill="#f5f9fc" stroke="#e3edf6"/>
+
+    <!-- Main content area -->
+    <rect x="282" y="158" width="608" height="156" rx="18" fill="#ffffff" stroke="#e3edf6"/>
+    <rect x="304" y="182" width="190" height="18" rx="9" fill="#e6f1fb"/>
+    <rect x="304" y="210" width="260" height="12" rx="6" fill="#f5f9fc" stroke="#e3edf6"/>
+
+    <!-- Chart -->
+    <rect x="304" y="240" width="560" height="54" rx="14" fill="#f5f9fc" stroke="#e3edf6"/>
+    <path d="M316 280C360 256 392 270 426 254C456 240 492 238 520 248C560 262 584 234 624 240C656 246 686 272 720 258C754 244 794 244 852 252" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="426" cy="254" r="4" fill="#2b6aa6"/>
+    <circle cx="624" cy="240" r="4" fill="#2b6aa6"/>
+    <circle cx="720" cy="258" r="4" fill="#2b6aa6"/>
+
+    <!-- Lower cards -->
+    <rect x="282" y="334" width="294" height="142" rx="18" fill="#ffffff" stroke="#e3edf6"/>
+    <rect x="304" y="358" width="120" height="16" rx="8" fill="#e6f1fb"/>
+    <rect x="304" y="388" width="250" height="10" rx="5" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="304" y="408" width="216" height="10" rx="5" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="304" y="432" width="86" height="26" rx="13" fill="#2b6aa6" opacity="0.12" stroke="#b5d6f2"/>
+
+    <rect x="596" y="334" width="294" height="142" rx="18" fill="#ffffff" stroke="#e3edf6"/>
+    <rect x="618" y="358" width="152" height="16" rx="8" fill="#e6f1fb"/>
+    <!-- Table rows -->
+    <rect x="618" y="388" width="250" height="12" rx="6" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="618" y="410" width="250" height="12" rx="6" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="618" y="432" width="250" height="12" rx="6" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="618" y="454" width="160" height="12" rx="6" fill="#f5f9fc" stroke="#e3edf6"/>
+    <rect x="812" y="452" width="56" height="16" rx="8" fill="url(#accent)" opacity="0.18"/>
+  </g>
+</svg>
+

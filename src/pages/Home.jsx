@@ -1,97 +1,157 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
+const FOOTER_EMAIL = "twodevsstudios@gmail.com";
 
 function Home() {
+  useEffect(() => {
+    document.title = "TwoDevsStudio · Two Devs Studio";
+  }, []);
+
   return (
-    <div className="site">
-      <header className="hero">
-        <nav className="nav">
-          <div className="brand">
+    <div className="site landing">
+      <header className="landing-hero">
+        <nav className="landing-nav">
+          <Link className="landing-brand" to="/">
             <img
-              className="brand-logo"
+              className="landing-brand-logo"
               src="/twodevsstudio-logo.png"
               alt="TwoDevsStudio logo"
             />
             <span>TwoDevsStudio</span>
-          </div>
-          <div className="nav-links">
+          </Link>
+
+          <div className="landing-nav-links">
             <a href="#products">Products</a>
             <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <Link className="nav-cta" to="/hirediary">
-              HireDiary
-            </Link>
+            <a href={`mailto:${FOOTER_EMAIL}`}>Contact</a>
+            <Link to="/hirediary">HireDiary</Link>
+            <Link to="/smart-vending">Smart Vending</Link>
           </div>
+
+          <a className="landing-nav-cta" href={`mailto:${FOOTER_EMAIL}`}>
+            Contact
+          </a>
         </nav>
 
-        <div className="hero-content single">
-          <div className="hero-copy">
-            <p className="eyebrow">Independent app studio</p>
-            <h1>TwoDevsStudio builds focused apps that respect your time.</h1>
-            <p className="subtitle">
-              We are a two-person team obsessed with practical software. Our
-              flagship product is HireDiary, a job search companion for tracking
-              applications, interviews, and follow-ups.
+        <div className="landing-hero-grid">
+          <div className="landing-hero-copy">
+            <div className="landing-badge" aria-label="Independent studio">
+              <span className="landing-badge-icon" aria-hidden="true">
+                ✓
+              </span>
+              <span>Independent app studio</span>
+            </div>
+
+            <p className="landing-goldline">
+              Focused apps, strong UX, practical automation.
             </p>
-            <div className="hero-actions">
-              <Link className="button primary" to="/hirediary">
+
+            <h1 className="landing-title">
+              Two-person studio,{" "}
+              <span className="landing-title-accent">shipping software that lasts.</span>
+            </h1>
+
+            <p className="landing-subtitle">
+              We build practical apps that respect your time — from consumer
+              products to internal tools.
+            </p>
+
+            <div className="landing-actions">
+              <Link className="landing-button primary" to="/hirediary">
                 Visit HireDiary
               </Link>
-              <a className="button ghost" href="#contact">
+              <a className="landing-button ghost" href={`mailto:${FOOTER_EMAIL}`}>
                 Contact Us
               </a>
+            </div>
+          </div>
+
+          <div className="landing-hero-media" aria-hidden="true">
+            <div className="landing-hero-card home-hero-card">
+              <img
+                className="landing-hero-illustration home-hero-illustration"
+                src="/twodevsstudio-photo.jpeg"
+                alt=""
+              />
             </div>
           </div>
         </div>
       </header>
 
-      <main>
-        <section className="section" id="products">
-          <p className="section-eyebrow">Our product</p>
-          <h2>HireDiary</h2>
-          <p className="section-subtitle">
-            A modern Android job application tracker with AI-assisted job post
-            capture and reminders.
-          </p>
-          <div className="product-card">
-            <div className="product-card-media">
-              <img src="/hirediary-logo.webp" alt="HireDiary" />
+      <main className="landing-main">
+        <section className="landing-band" id="products">
+          <div className="landing-container">
+            <p className="section-eyebrow">Our products</p>
+            <h2>Products</h2>
+            <p className="section-subtitle">
+              Focused products built by a small team — from consumer apps to
+              internal tools.
+            </p>
+
+            <div className="product-card">
+              <div className="product-card-media">
+                <img src="/hirediary-logo.webp" alt="HireDiary" />
+              </div>
+              <div>
+                <h3>HireDiary</h3>
+                <p>
+                  Track applications, follow-ups, interviews, and offers in one
+                  place. Export data, visualize progress, and keep momentum.
+                </p>
+                <div className="product-actions">
+                  <Link className="landing-button primary" to="/hirediary">
+                    Open HireDiary Page
+                  </Link>
+                  <a
+                    className="landing-button ghost"
+                    href="https://play.google.com/store/apps/details?id=com.twodevsstudio.hirediary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Google Play
+                  </a>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>HireDiary</h3>
-              <p>
-                Track applications, follow-ups, interviews, and offers in one
-                place. Export data, visualize progress, and keep momentum.
-              </p>
-              <div className="product-actions">
-                <Link className="button primary" to="/hirediary">
-                  Open HireDiary Page
-                </Link>
-                <a
-                  className="button ghost"
-                  href="https://play.google.com/store/apps/details?id=com.twodevsstudio.hirediary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Google Play
-                </a>
+
+            <div className="product-card">
+              <div className="product-card-media">
+                <div className="product-emoji" aria-label="Smart Vending">
+                  🥤
+                </div>
+              </div>
+              <div>
+                <h3>Smart Vending</h3>
+                <p>
+                  Smart vending for employee perks: access products using the
+                  existing employee badge, with limits and a real-time HR
+                  dashboard.
+                </p>
+                <div className="product-actions">
+                  <Link className="landing-button primary" to="/smart-vending">
+                    Open Landing Page
+                  </Link>
+                  <a
+                    className="landing-button ghost"
+                    href="mailto:twodevsstudios@gmail.com?subject=Smart%20Vending"
+                  >
+                    Contact
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="section" id="about">
-          <p className="section-eyebrow">About the studio</p>
-          <h2>TwoDevsStudio</h2>
-          <p className="section-subtitle">
-            We build small, focused products with strong UX and clear value.
-          </p>
-          <div className="about-grid">
-            <img
-              className="studio-logo"
-              src="/twodevsstudio-photo.jpeg"
-              alt="TwoDevsStudio team photo"
-            />
-            <div>
+        <section className="landing-band landing-band--alt" id="about">
+          <div className="landing-container">
+            <p className="section-eyebrow">About the studio</p>
+            <h2>TwoDevsStudio</h2>
+            <p className="section-subtitle">
+              We build small, focused products with strong UX and clear value.
+            </p>
+            <div className="about-copy">
               <p>TwoDevsStudio is a two-person independent development team.</p>
               <p>We build practical apps with clean UX and useful automation.</p>
               <p>
@@ -101,36 +161,33 @@ function Home() {
             </div>
           </div>
         </section>
-
-        <section className="section" id="contact">
-          <div className="contact-wrap">
-            <div className="contact-info">
-              <p className="section-eyebrow">Get in touch</p>
-              <h2>Contact TwoDevsStudio</h2>
-              <p>
-                Tell us what you need help with or what you would like us to
-                build next.
-              </p>
-              <div className="contact-details">
-                <p className="contact-line">twodevsstudios@gmail.com</p>
-                <p className="contact-line">Europe (Remote)</p>
-              </div>
-            </div>
-            <div className="contact-form-card">
-              <p>
-                Prefer a product-specific contact form? Visit the HireDiary
-                page.
-              </p>
-              <Link className="button primary" to="/hirediary#contact">
-                Go to HireDiary Contact
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} TwoDevsStudio. All rights reserved.</p>
+      <footer className="landing-footer">
+        <div className="landing-container landing-footer-grid">
+          <div>
+            <p className="landing-footer-brand">TwoDevsStudio</p>
+            <p className="landing-footer-muted">
+              Focused apps built by a small team.
+            </p>
+          </div>
+
+          <div>
+            <p className="landing-footer-title">Contact</p>
+            <p className="landing-footer-link">
+              <a href={`mailto:${FOOTER_EMAIL}`}>{FOOTER_EMAIL}</a>
+            </p>
+          </div>
+
+          <div>
+            <p className="landing-footer-title">Location</p>
+            <p className="landing-footer-muted">Europe (Remote)</p>
+          </div>
+        </div>
+
+        <div className="landing-container landing-footer-bottom">
+          <p>© {new Date().getFullYear()} TwoDevsStudio. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

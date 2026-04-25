@@ -1,0 +1,36 @@
+<svg width="980" height="420" viewBox="0 0 980 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#223a48"/>
+      <stop offset="0.55" stop-color="#2b6aa6"/>
+      <stop offset="1" stop-color="#0f2130"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#0f2130" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="66" width="860" height="288" rx="26" fill="url(#bg)"/>
+    <path d="M118 96H860V180C780 220 730 270 640 314H118V96Z" fill="url(#shine)" opacity="0.35"/>
+
+    <text x="190" y="135" font-family="Space Grotesk, Segoe UI, sans-serif" font-size="28" font-weight="800" letter-spacing="2.2" fill="#E6F1FB" fill-opacity="0.92">
+      CONTACTLESS PERMIT
+    </text>
+
+    <rect x="188" y="158" width="70" height="52" rx="10" fill="#f8e7a6"/>
+    <rect x="196" y="166" width="54" height="36" rx="8" fill="#d9c47a" opacity="0.5"/>
+
+    <!-- NFC waves -->
+    <g stroke="#E6F1FB" stroke-opacity="0.88" stroke-width="10" stroke-linecap="round">
+      <path d="M694 144C724 174 724 246 694 276"/>
+      <path d="M738 128C782 172 782 248 738 292"/>
+      <path d="M782 114C842 174 842 246 782 306"/>
+    </g>
+  </g>
+</svg>
+
