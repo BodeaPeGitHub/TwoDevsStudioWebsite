@@ -1,0 +1,99 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-label="Smart Vending logo"
+>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="120" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#eaf6ff" />
+      <stop offset="0.45" stop-color="#cfe8ff" />
+      <stop offset="1" stop-color="#b8dcff" />
+    </linearGradient>
+    <linearGradient id="machineBody" x1="170" y1="170" x2="290" y2="370" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2a3b4a" />
+      <stop offset="0.55" stop-color="#172735" />
+      <stop offset="1" stop-color="#0f1c29" />
+    </linearGradient>
+    <linearGradient id="glass" x1="196" y1="204" x2="262" y2="314" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0a1620" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#0a1620" stop-opacity="0.25" />
+    </linearGradient>
+    <linearGradient id="accentBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3e86d8" />
+      <stop offset="1" stop-color="#1b5fb7" />
+    </linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feOffset dy="14" />
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="0 0 0 0 0.05  0 0 0 0 0.12  0 0 0 0 0.2  0 0 0 0.22 0"
+      />
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+    <filter id="cardShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feOffset dy="10" />
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="0 0 0 0 0.05  0 0 0 0 0.12  0 0 0 0 0.2  0 0 0 0.18 0"
+      />
+      <feBlend in="SourceGraphic" mode="normal" />
+    </filter>
+  </defs>
+
+  <rect x="36" y="36" width="440" height="440" rx="96" fill="url(#bg)" />
+
+  <g filter="url(#shadow)">
+    <rect x="156" y="164" width="186" height="248" rx="26" fill="url(#machineBody)" />
+
+    <rect x="184" y="196" width="110" height="164" rx="18" fill="url(#glass)" />
+    <rect x="198" y="232" width="82" height="12" rx="6" fill="#2a3b4a" />
+
+    <g opacity="0.95">
+      <rect x="206" y="212" width="18" height="46" rx="9" fill="url(#accentBlue)" />
+      <rect x="229" y="206" width="18" height="52" rx="9" fill="#a8d6ff" />
+      <rect x="252" y="212" width="18" height="46" rx="9" fill="url(#accentBlue)" />
+    </g>
+
+    <g opacity="0.95">
+      <rect x="206" y="274" width="26" height="46" rx="6" fill="#6bb0ff" />
+      <rect x="236" y="274" width="26" height="46" rx="6" fill="url(#accentBlue)" />
+      <rect x="266" y="274" width="26" height="46" rx="6" fill="#1c4f9e" />
+    </g>
+
+    <rect x="310" y="196" width="24" height="40" rx="6" fill="#85bfff" opacity="0.85" />
+    <g fill="#a8c7e6" opacity="0.55">
+      <circle cx="322" cy="256" r="6" />
+      <circle cx="322" cy="276" r="6" />
+      <circle cx="322" cy="296" r="6" />
+      <circle cx="322" cy="316" r="6" />
+      <circle cx="312" cy="266" r="6" />
+      <circle cx="312" cy="286" r="6" />
+    </g>
+    <rect x="304" y="342" width="40" height="44" rx="10" fill="#0c1a26" opacity="0.85" />
+    <rect x="312" y="356" width="24" height="6" rx="3" fill="#2a3b4a" opacity="0.9" />
+
+    <rect x="182" y="370" width="120" height="40" rx="12" fill="#0b1520" opacity="0.65" />
+    <rect x="170" y="410" width="34" height="14" rx="7" fill="#0b1520" opacity="0.85" />
+    <rect x="294" y="410" width="34" height="14" rx="7" fill="#0b1520" opacity="0.85" />
+  </g>
+
+  <g filter="url(#cardShadow)" transform="translate(306 312) rotate(12)">
+    <rect x="-10" y="-10" width="142" height="170" rx="18" fill="#ffffff" />
+    <rect x="18" y="14" width="46" height="16" rx="8" fill="#0f1c29" opacity="0.7" />
+    <circle cx="60" cy="82" r="22" fill="url(#accentBlue)" />
+    <rect x="30" y="118" width="78" height="14" rx="7" fill="url(#accentBlue)" />
+  </g>
+
+  <g fill="none" stroke="#1f67c2" stroke-linecap="round" opacity="0.9">
+    <path d="M402 282c18 10 30 26 34 46" stroke-width="10" />
+    <path d="M390 300c11 7 18 17 21 30" stroke-width="10" />
+    <path d="M378 318c6 4 10 10 12 18" stroke-width="10" />
+  </g>
+</svg>

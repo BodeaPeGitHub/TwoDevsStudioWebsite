@@ -117,9 +117,11 @@ function Home() {
 
             <div className="product-card">
               <div className="product-card-media">
-                <div className="product-emoji" aria-label="Smart Vending">
-                  🥤
-                </div>
+                <img
+                  className="product-card-logo product-card-logo--vending"
+                  src="/smart-vending-logo.svg"
+                  alt="Smart Vending"
+                />
               </div>
               <div>
                 <h3>Smart Vending</h3>
