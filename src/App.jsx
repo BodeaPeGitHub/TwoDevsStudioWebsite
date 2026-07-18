@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Home from "./pages/Home";
 import HireDiary from "./pages/HireDiary";
 import AutomatSmart from "./pages/AutomatSmart";
+import Demo from "./pages/Demo";
 
 function ScrollToTop() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/demo" element={<Demo />} />
         <Route path="/hirediary" element={<HireDiary />} />
         <Route path="/smart-vending" element={<AutomatSmart />} />
         <Route path="/automat-smart" element={<Navigate to="/smart-vending" replace />} />
