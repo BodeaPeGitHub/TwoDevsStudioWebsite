@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import HireDiary from "./pages/HireDiary";
 import AutomatSmart from "./pages/AutomatSmart";
 import Demo from "./pages/Demo";
+import Efti from "./pages/Efti";
 
 function ScrollToTop() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/demo" element={<Demo />} />
+        <Route path="/efti" element={<Efti />} />
         <Route path="/hirediary" element={<HireDiary />} />
         <Route path="/smart-vending" element={<AutomatSmart />} />
         <Route path="/automat-smart" element={<Navigate to="/smart-vending" replace />} />
