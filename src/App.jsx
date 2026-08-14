@@ -2,7 +2,6 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import { useEffect } from "react";
 import Home from "./pages/Home";
 import HireDiary from "./pages/HireDiary";
-import AutomatSmart from "./pages/AutomatSmart";
 import Demo from "./pages/Demo";
 import Efti from "./pages/Efti";
 
@@ -25,8 +24,8 @@ function App() {
         <Route path="/demo" element={<Demo />} />
         <Route path="/efti" element={<Efti />} />
         <Route path="/hirediary" element={<HireDiary />} />
-        <Route path="/smart-vending" element={<AutomatSmart />} />
-        <Route path="/automat-smart" element={<Navigate to="/smart-vending" replace />} />
+        <Route path="/smart-vending" element={<Navigate to="/" replace />} />
+        <Route path="/automat-smart" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );
