@@ -1,8 +1,8 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+    {"source":"/api/ibric/:path*","destination":"/api/ibric?route=:path*"},
+    {"source":"/((?!api/).*)","destination":"/index.html"}
+  ],
+  "functions": {"api/ibric.js":{"maxDuration":90}},
+  "headers": [{"source":"/ibric/:path*","headers":[{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Content-Type-Options","value":"nosniff"}]}]
 }
