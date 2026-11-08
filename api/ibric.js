@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 const UUID='[a-f0-9-]{36}';
 const PUBLIC=new Set(['config','me','enroll']);
-const ADMIN=new Set(['admin/session','admin/login','admin/logout','admin/password','admin/members','admin/settings']);
+const ADMIN=new Set(['admin/session','admin/login','admin/logout','admin/password','admin/members','admin/settings','admin/broadcast']);
 function allowed(route){return PUBLIC.has(route)||ADMIN.has(route)||new RegExp(`^admin/members/${UUID}(?:/actions)?$`,'i').test(route)||new RegExp(`^admin/operations/${UUID}/retry$`,'i').test(route);}
 export default async function handler(req,res){
  res.setHeader('Cache-Control','no-store');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('X-Content-Type-Options','nosniff');
