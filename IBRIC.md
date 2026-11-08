@@ -1,25 +1,27 @@
 # IBRIC Coffee Club
 
-Customer page: `/ibric`. Protected staff panel: `/ibric/admin`.
+Customer page: `/ibric`. Staff panel: `/ibric/admin`.
 
-The customer page contains the IBRIC logo, a card preview and a single action. The button creates or reopens the browser’s membership and redirects to Google Wallet for confirmation. New cards use “Membru IBRIC”; an existing member’s name and balance are preserved.
+## Hosting
 
-The frontend uses the same-origin Vercel function in `api/ibric.js`. It forwards only approved operations to the existing private IBRIC Sites backend. Membership, password hashes, coffee transactions and program settings remain in the existing D1 database; Google credentials remain on that backend.
+The React frontend and `api/ibric.js` run on Vercel. The API executes the backend in `server/ibric/` directly. Supabase Postgres stores memberships, password hashes, settings, rate limits, transactions and promotions. Google Wallet is called directly from Vercel. There is no Sites proxy, Cloudflare D1 binding or ChatGPT login dependency.
 
-## First access
+The Studio Supabase project is `ancecjivjjmnegfdfnro`. All IBRIC tables use the `ibric_` prefix, have RLS enabled and deny browser roles. Only the Vercel server key can access them. Existing Studio tables remain separate.
 
-Use the generated staff password at `/ibric/admin`. Change it in **Program & acces** using the current password. Password changes invalidate previous sessions; sessions expire after 8 hours. Staff access does not use ChatGPT sign-in.
+## Server configuration
 
-Vercel requires these server-only Production environment variables: `IBRIC_BACKEND_URL`, `IBRIC_BACKEND_SERVICE_TOKEN`, `IBRIC_BRIDGE_TOKEN`. No Google service-account key belongs in this repository or in browser variables. Existing VITE_SUPABASE variables belong to the other Studio pages and must be preserved.
+Configure Production variables from `.env.example` in Vercel. `SUPABASE_SERVICE_ROLE_KEY`, `GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY`, and `IBRIC_SESSION_SECRET` are server secrets and must never have a `VITE_` prefix. The existing public VITE_SUPABASE variables serve other Studio pages and are preserved.
 
-## Use at the counter
+The customer button creates or reopens the browser's membership and redirects to Google Wallet. Reopening never resets points. Existing card identifiers, member cookies, balances and password hashes were migrated unchanged. Staff sessions can be re-established with the same password. Change it in **Program & acces**.
 
-Search by name/card number or scan the customer's Wallet QR. Add the number of purchased coffees, then redeem a free coffee when the threshold is reached. Redemption resets the balance after explicit confirmation. Corrections require a reason and remain in the member's history. Pending Wallet updates can be retried without crediting the purchase again. Do not create a new request to resolve a pending synchronization; use its retry control.
+## Transactions and notifications
 
-The notification selector supports native point-update notifications, a message with notification, or silent updates. Individual messages have a review step. Google's notification limits, device settings and synchronization control delivery, including when Wallet is already open. No foreground popup is guaranteed. The issuer is still in Demo Mode; only approved test accounts can save and TEST ONLY remains until Google grants publishing access.
+`ibric_record_operation` locks a member briefly and commits its balance and ledger entry together. It validates the revision and prevents more than one pending balance change per member. Google synchronization happens after that transaction. The retry control uses the same operation ID and never credits another purchase. Failed synchronizations remain in history for retry. There is no automatic points adjustment during deployment.
 
-Program name/color changes update the shared Wallet class. Threshold changes apply to new members. Public GitHub artwork must exist for every stamp count of a new threshold before it is used.
+Individual messages and class-wide promotions have stable request IDs and stored delivery state. Google controls notification delivery and Wallet refresh timing; a foreground popup is not guaranteed. Demo Mode remains until Google grants publishing access.
 
-## Local development
+The migration is in `supabase/migrations/`. Imported customer data and credentials are never committed. Supabase migrations and D1 imports do not send messages or change existing Wallet objects.
 
-`vercel dev` runs the Vite app and API function using the linked project's environment. Vite alone runs only the UI and cannot execute the server function. Use server-only local environment variables; never expose bridge credentials via VITE_.
+## Development
+
+`vercel dev` runs both the UI and server function. Plain `vite` serves only the frontend. Keep local server secrets in an ignored environment file or process environment.
