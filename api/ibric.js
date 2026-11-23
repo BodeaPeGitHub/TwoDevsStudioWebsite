@@ -1,2 +1,2 @@
-// Runs entirely on Vercel. Supabase stores data; Google Wallet receives pass updates directly.
-export { default } from '../server/ibric/handler.js';
+// Disabled at the user's request. Customer data is preserved in Supabase.
+export { default } from '../server/ibric/retired.js';

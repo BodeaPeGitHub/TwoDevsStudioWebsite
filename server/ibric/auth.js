@@ -1,6 +1,7 @@
 import { createHash, createHmac, timingSafeEqual, pbkdf2Sync } from 'node:crypto';
 import { database, result } from './database.js';
-export const ADMIN_COOKIE = 'ibric_staff_session';
+import { program, programEnv } from './program.js';
+export const adminCookie = () => `${program().slug}_staff_session`;
 export const digest = (value) => createHash('sha256').update(value).digest('hex');
 export function equal(a, b) {
   if(typeof a!=='string'||typeof b!=='string')return false;
@@ -12,8 +13,8 @@ export async function credentials() {
   return result(await database().from('ibric_admin_credentials').select('*').eq('id', 'owner').maybeSingle());
 }
 function signature(value) {
-  if (!process.env.IBRIC_SESSION_SECRET) throw new Error('Session signing unavailable');
-  return createHmac('sha256', process.env.IBRIC_SESSION_SECRET).update(value).digest('base64url');
+  if (!programEnv('SESSION_SECRET')) throw new Error('Session signing unavailable');
+  return createHmac('sha256', programEnv('SESSION_SECRET')).update(program().slug === 'ibric' ? value : `${program().slug}:${value}`).digest('base64url');
 }
 export function sessionToken(revision) {
   const body = Buffer.from(JSON.stringify({ role: 'owner', revision, exp: Math.floor(Date.now() / 1000) + 28800 })).toString('base64url');
@@ -26,8 +27,8 @@ export function setCookie(res, name, value, maxAge, path, secure = true) {
   res.appendHeader('Set-Cookie', `${name}=${value}; Path=${path}; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure ? '; Secure' : ''}`);
 }
 export async function actor(req) {
-  const token = cookies(req)[ADMIN_COOKIE];
-  if (!token || !process.env.IBRIC_SESSION_SECRET) return null;
+  const token = cookies(req)[adminCookie()];
+  if (!token || !programEnv('SESSION_SECRET')) return null;
   let value;
   try {
     const [body, sig, extra] = token.split('.');

@@ -1,0 +1,19 @@
+.ibric-app.cuc-app{--ib-blue:#902639;--ib-dark:#650d23;--ib-cream:#feffed;--ib-border:#ded9c8;--ib-muted:#796865}
+.ibric-app.cuc-app.ibric-enrollment{background:#feffed;background-image:radial-gradient(#90263912 .8px,transparent .8px);background-size:18px 18px}
+.ibric-app.cuc-app .ibric-brand-logo{width:156px;height:82px;margin-bottom:24px}
+.ibric-app.cuc-app .ibric-card{background:#feffed;color:#902639;border:1px solid #90263940;box-shadow:0 18px 42px #650d2318}
+.ibric-app.cuc-app .ibric-card-logo{width:78%;margin:18px 24px 8px;max-height:90px}
+.ibric-app.cuc-app .ibric-card-values span{opacity:.8}
+.ibric-app.cuc-app .ibric-card-foot{opacity:.85}
+.ibric-app.cuc-app .ibric-enrollment-button{border-radius:6px}
+.ibric-app.cuc-app .ibric-button:hover:not(:disabled){background:#650d23}
+.ibric-app.cuc-app .ibric-button.secondary:hover:not(:disabled){background:#9026390c}
+.ibric-app.cuc-app .ibric-wordmark{letter-spacing:-2px}
+.ibric-app.cuc-app .ibric-admin-header .ibric-wordmark img,.ibric-app.cuc-app.ibric-login>.ibric-wordmark img{width:96px;height:auto}
+.ibric-app.cuc-app .ibric-admin-header{background:#feffed}
+.ibric-app.cuc-app .ibric-tabs button.active{border-color:#902639;color:#902639}
+.ibric-app.cuc-app .ibric-push-checkbox input[type=checkbox]{accent-color:#902639}
+.ibric-app.cuc-app input:focus,.ibric-app.cuc-app textarea:focus,.ibric-app.cuc-app select:focus{outline-color:#90263955}
+.cuc-place{font-size:10px;letter-spacing:.11em;color:#796865;margin-top:25px!important}
+.cuc-place a{text-decoration:underline;text-underline-offset:4px}
+.cuc-rule{font-size:12px;color:#796865;margin:-10px 0 25px!important;line-height:1.7}

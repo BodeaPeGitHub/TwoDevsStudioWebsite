@@ -1,0 +1,22 @@
+.coffee-app.letscoffee-app{--ib-blue:#111;--ib-dark:#111;--ib-cream:#fffcf4;--ib-border:#dedbd3;--ib-muted:#716e66;--coffee-hover:#333}
+.coffee-app.orso-app{--ib-blue:#bd4512;--ib-dark:#29221d;--ib-cream:#fffcf4;--ib-border:#eadbd0;--ib-muted:#78695f;--coffee-hover:#96350c}
+.coffee-app.guau-app{--ib-blue:#111;--ib-dark:#111;--ib-cream:#fffcf4;--ib-border:#eadccc;--ib-muted:#766c60;--coffee-hover:#34302a}
+.coffee-app.brewkai-app{--ib-blue:#a33c25;--ib-dark:#33291e;--ib-cream:#f9e7cb;--ib-border:#dbc3a2;--ib-muted:#77644f;--coffee-hover:#84301e}
+.coffee-app.brewkai-app .coffee-enrollment-content{max-width:440px}
+.coffee-app.brewkai-app .coffee-brand-logo{display:none}
+.coffee-app.brewkai-app .coffee-card{transform:none;border-radius:16px}
+.coffee-app.brewkai-app .coffee-card-values{background:#fbefdccc}
+.coffee-app.brewkai-app .coffee-rule{color:#66513d}
+.coffee-app.coffee-enrollment{background:var(--ib-cream)}
+.coffee-app .coffee-card{background:var(--ib-cream);color:var(--ib-dark);border:1px solid var(--ib-border);box-shadow:0 18px 42px #33221118}
+.coffee-app .coffee-card-values{padding:15px 22px 21px;border-top:1px solid var(--ib-border)}
+.coffee-app .coffee-card-values span{opacity:.8}
+.coffee-app .coffee-brand-logo{width:175px;height:92px;object-fit:contain;margin-bottom:18px}
+.coffee-app .coffee-wordmark{letter-spacing:0}
+.coffee-app .coffee-wordmark img{width:112px;height:55px;object-fit:contain}
+.coffee-app .coffee-admin-header{background:var(--ib-cream)}
+.coffee-app .coffee-button:hover:not(:disabled){background:var(--coffee-hover)}
+.coffee-app .coffee-button.secondary:hover:not(:disabled){background:#33221108}
+.coffee-app .coffee-push-checkbox input[type=checkbox]{accent-color:var(--ib-blue)}
+.coffee-app input:focus,.coffee-app textarea:focus,.coffee-app select:focus{outline-color:var(--ib-blue)}
+.coffee-rule{font-size:12px;color:var(--ib-muted);margin:-10px 0 25px!important;line-height:1.7}

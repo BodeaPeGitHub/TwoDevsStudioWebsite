@@ -1,3 +1,4 @@
+import { useProgram } from './program';
 'use client';
 import { useEffect, useRef } from 'react';
 export async function api(base,path,options={}) {
@@ -11,12 +12,13 @@ export function Icon({name,size=22,...props}) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]||paths.coffee}</svg>;
 }
 export function CardPreview({coffees=0,threshold=9,assets='/ibric/assets',assetBase,name,small=false}) {
+ const { name: programName, tagline } = useProgram();
  const prefix=assetBase?`${assetBase.replace(/\/$/,'')}/art/v2`:assets;
- return <div className={`ibric-card ${small?'small':''}`}><img className="ibric-card-logo" src={`${prefix}/wide-logo.png`} alt="IBRIC Coffee Club"/><div className="ibric-card-values"><div><span>CAFELE ADUNATE</span><strong>{coffees} / {threshold}</strong></div><div><span>{coffees>=threshold?'RECOMPENSA TA':'PÂNĂ LA GRATUITĂ'}</span><strong>{coffees>=threshold?'O cafea gratuită!':`${Math.max(0,threshold-coffees)} cafele`}</strong></div></div><img className="ibric-card-art" src={`${prefix}/stamps-${threshold}-${Math.min(coffees,threshold)}.png`} alt={`${coffees} din ${threshold} ștampile adunate`}/><div className="ibric-card-foot"><span>{name||'PENTRU OAMENI CU GUST'}</span><span>IBRIC COFFEE CLUB</span></div></div>;
+ return <div className={`ibric-card ${small?'small':''}`}><img className="ibric-card-logo" src={`${prefix}/wide-logo.png`} alt={programName}/><div className="ibric-card-values"><div><span>CAFELE ADUNATE</span><strong>{coffees} / {threshold}</strong></div><div><span>{coffees>=threshold?'RECOMPENSA TA':'PÂNĂ LA GRATUITĂ'}</span><strong>{coffees>=threshold?'O cafea gratuită!':`${Math.max(0,threshold-coffees)} cafele`}</strong></div></div><img className="ibric-card-art" src={`${prefix}/stamps-${threshold}-${Math.min(coffees,threshold)}.png`} alt={`${coffees} din ${threshold} ștampile adunate`}/><div className="ibric-card-foot"><span>{name||tagline}</span><span>{programName.toUpperCase()}</span></div></div>;
 }
 export function Scanner({onScan,onClose}) {
  const video=useRef(null);const error=useRef(null);
  useEffect(()=>{let stopped=false,controls;import('@zxing/browser').then(async({BrowserQRCodeReader})=>{const reader=new BrowserQRCodeReader();const result=await reader.decodeFromConstraints({video:{facingMode:{ideal:'environment'}}},video.current,(value)=>{if(value&&!stopped){stopped=true;controls?.stop();onScan(value.getText());}});controls=result;if(stopped)controls.stop();}).catch(()=>{if(error.current)error.current.textContent='Camera nu este disponibilă. Poți introduce sau scana codul în câmpul de căutare.';});return()=>{stopped=true;controls?.stop();const stream=video.current?.srcObject;stream?.getTracks?.().forEach(track=>track.stop());};},[]);
  return <div className="ibric-modal-backdrop" role="presentation"><section className="ibric-dialog" role="dialog" aria-modal="true" aria-labelledby="scanner-title"><button className="ibric-icon-button ibric-close" onClick={onClose} aria-label="Închide camera"><Icon name="close"/></button><h2 id="scanner-title">Scanează cardul clientului</h2><p>Îndreaptă camera spre QR-ul din Portofel Google.</p><video ref={video} autoPlay muted playsInline className="ibric-scanner-video"/><p ref={error} role="status"/><button className="ibric-button secondary" onClick={onClose}>Introdu codul manual</button></section></div>;
 }
-export function statusText(value){return {accepted:'Notificare solicitată',quota_reached:'Limita de notificări Google a fost atinsă',already_updated:'Card deja actualizat',not_requested:'Fără notificare'}[value]||value;}
+export function statusText(value){return {accepted:'Solicitare de notificare acceptată de Google',quota_reached:'Salvat în Wallet, fără alertă (limita Google)',saved_without_notification:'Salvat în Wallet, fără solicitare de notificare',already_updated:'Card deja actualizat; nicio alertă nouă',not_requested:'Fără solicitare de notificare'}[value]||value;}
