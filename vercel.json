@@ -1,8 +1,326 @@
 {
   "rewrites": [
-    {"source":"/api/ibric/:path*","destination":"/api/ibric?route=:path*"},
-    {"source":"/((?!api/).*)","destination":"/index.html"}
+    {
+      "source": "/ibric",
+      "destination": "/api/ibric"
+    },
+    {
+      "source": "/ibric/:path*",
+      "destination": "/api/ibric"
+    },
+    {
+      "source": "/api/ibric/:path*",
+      "destination": "/api/ibric?route=:path*"
+    },
+    {
+      "source": "/api/cuc/:path*",
+      "destination": "/api/cuc?route=:path*"
+    },
+    {
+      "source": "/api/letscoffee/:path*",
+      "destination": "/api/letscoffee?route=:path*"
+    },
+    {
+      "source": "/api/orso/:path*",
+      "destination": "/api/orso?route=:path*"
+    },
+    {
+      "source": "/api/guau/:path*",
+      "destination": "/api/guau?route=:path*"
+    },
+    {
+      "source": "/api/brewkai/:path*",
+      "destination": "/api/brewkai?route=:path*"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
   ],
-  "functions": {"api/ibric.js":{"maxDuration":90}},
-  "headers": [{"source":"/ibric/:path*","headers":[{"key":"Referrer-Policy","value":"no-referrer"},{"key":"X-Content-Type-Options","value":"nosniff"}]}]
+  "functions": {
+    "api/ibric.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/ibric-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/cuc.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/cuc-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/letscoffee.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/letscoffee-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/orso.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/orso-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/guau.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/guau-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/brewkai.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/brewkai-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    }
+  },
+  "headers": [
+    {
+      "source": "/ibric/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/ibric/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/ibric"
+        }
+      ]
+    },
+    {
+      "source": "/cuc/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/cuc/wallet/v3/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/cuc/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/cuc"
+        }
+      ]
+    },
+    {
+      "source": "/cuc/wallet/v5/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/letscoffee/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/letscoffee/wallet/v1/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/letscoffee/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/letscoffee"
+        }
+      ]
+    },
+    {
+      "source": "/orso/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/orso/wallet/v1/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/orso/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/orso"
+        }
+      ]
+    },
+    {
+      "source": "/guau/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/guau/wallet/v1/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/guau/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/guau"
+        }
+      ]
+    },
+    {
+      "source": "/brewkai/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/brewkai/wallet/v1/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/brewkai/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/brewkai"
+        }
+      ]
+    }
+  ]
 }
