@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Cluj Arena in 3D and preview your seat for Universitatea Cluj vs. CFR Cluj.">
+  <title>Cluj Arena Seat Explorer · Universitatea Cluj vs. CFR Cluj</title>
+  <link rel="stylesheet" href="../style.css">
+  <script defer src="../stadium.js"></script>
+  <script defer src="../arena.js"></script>
+  <script defer src="../app.js"></script>
+</head>
+<body class="football">
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">▥</span> Cluj Arena <span>Seat Explorer</span></a>
+      <nav class="venue-nav" aria-label="Explore a venue">
+        <a href="../index.html">BTarena</a>
+        <a href="./index.html" aria-current="page">Cluj Arena</a>
+      </nav>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="event" aria-labelledby="event-title">
+      <p class="eyebrow">SUPERLIGA <span></span> CLUJ DERBY</p>
+      <h1 id="event-title">Universitatea Cluj <i>vs.</i> CFR Cluj</h1>
+      <p class="event-meta">Saturday, 12 December 2026 <span>·</span> Cluj Arena <span>·</span> Kickoff TBA</p>
+    </section>
+    <div class="workspace">
+      <section class="viewer" id="viewer" aria-label="Interactive stadium viewer">
+        <canvas id="arena" tabindex="0" aria-label="3D stadium. Use arrow keys to move the camera, plus or minus to zoom, or the seating panel to choose a section and seat."></canvas>
+        <div class="viewer-top">
+          <div class="switcher" role="group" aria-label="Camera view">
+            <button type="button" id="overview" aria-pressed="true">Stadium</button>
+            <button type="button" id="section-view" aria-pressed="false" disabled>Section</button>
+            <button type="button" id="seat-view" aria-pressed="false" disabled>Seat view</button>
+          </div>
+          <span class="model-label">3D SIMULATION</span>
+        </div>
+        <div class="map-controls" role="group" aria-label="Camera controls">
+          <button id="zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+          <button id="zoom-out" aria-label="Zoom out" title="Zoom out">−</button>
+          <button id="reset-camera" aria-label="Reset camera" title="Reset camera">↺</button>
+        </div>
+        <div class="viewer-bottom">
+          <span id="camera-hint">Drag to rotate · Click a section</span>
+          <span id="camera-label">Cluj Arena overview</span>
+        </div>
+        <div id="arena-tooltip" class="arena-tooltip" hidden></div>
+      </section>
+      <aside class="plain-panel" aria-labelledby="panel-title">
+        <div class="panel-intro">
+          <p class="eyebrow">SEAT EXPLORER</p>
+          <h2 id="panel-title">Find your view.</h2>
+          <p id="panel-description">Click a section on the stadium or choose a ticket category to see its seats.</p>
+        </div>
+        <div id="picker"></div>
+        <div class="panel-footer">
+          <div class="selection-summary"><span id="cart-label">Your selection</span><strong id="cart-price">0 lei</strong></div>
+          <button id="checkout" class="primary" disabled>Review demo tickets</button>
+        </div>
+      </aside>
+    </div>
+    <section id="compare-panel" class="compare-panel" aria-labelledby="compare-title" hidden>
+      <div><h2 id="compare-title">Compare seat views</h2><p id="compare-subtitle">Save up to three seats to compare their angles.</p></div>
+      <div id="compare-grid" class="compare-grid"></div>
+    </section>
+    <footer class="site-footer">
+      <span>Independent demo · Seat views, availability and prices are illustrative.</span>
+      <div><a href="https://www.fcucluj.ro/bilete" target="_blank" rel="noopener noreferrer">Official ticket office</a><button id="references">Venue references</button></div>
+    </footer>
+  </main>
+  <dialog id="dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top"><h2 id="dialog-title"></h2><button id="close-dialog" aria-label="Close dialog">×</button></div>
+    <div id="dialog-content"></div>
+  </dialog>
+  <p id="announcement" class="sr-only" role="status"></p>
+</body>
+</html>
