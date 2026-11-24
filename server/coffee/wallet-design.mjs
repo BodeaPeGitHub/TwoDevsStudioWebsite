@@ -18,7 +18,7 @@ export function walletPresentation(member, assetOrigin, brand = program()) {
       { id: 'reward-rule', header: 'Ritualul tău, răsplătit.', body: `Cumpără ${threshold} cafele și primești următoarea cafea din partea noastră. Arată QR-ul baristei la fiecare comandă. Numărătoarea se reia după folosirea recompensei.` },
     ],
   };
-  if (assetOrigin) fields.heroImage = image(`${assetBase(assetOrigin)}/art/${brand.walletArtVersion || 'v2'}/stamps-${threshold}-${Math.min(count,threshold)}.png`, earned ? 'Toate ștampilele adunate. Cafeaua gratuită este disponibilă.' : `${count} din ${threshold} ștampile adunate; ultima ceașcă reprezintă cafeaua gratuită.`);
+  if (assetOrigin) fields.heroImage = image(`${assetBase(assetOrigin)}/art/${brand.walletArtVersion || 'v2'}/${brand.walletHeroFilePrefix || 'stamps'}-${threshold}-${Math.min(count,threshold)}.png`, earned ? 'Toate ștampilele adunate. Cafeaua gratuită este disponibilă.' : `${count} din ${threshold} ștampile adunate; ultima ceașcă reprezintă cafeaua gratuită.`);
   return fields;
 }
 export function walletClassDesign(assetOrigin, brand = program()) {

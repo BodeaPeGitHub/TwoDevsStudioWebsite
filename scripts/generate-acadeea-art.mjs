@@ -48,5 +48,13 @@ for (let count = 0; count <= 7; count++) {
   const raster = count ? await sharp(source).composite([{ input: overlay }]).png().toBuffer() : source;
   await sharp(raster).resize(1032, 812).png().toFile(path.join(out, `stamps-7-${count}.png`));
   await copyFile(path.join(out, `stamps-7-${count}.png`), path.join(assets, `stamps-7-${count}.png`));
+  // Wallet's web card overlaps the top of the hero image. Keep every part of
+  // the artwork below that area, within the same recommended 1032×812 canvas.
+  // Contain (never cover) preserves the complete wordmark and all eight circles.
+  // The customer website continues to use the original, unpadded stamps file.
+  await sharp(raster)
+    .resize(1032, 660, { fit: 'contain', background: brand.background })
+    .extend({ top: 128, bottom: 24, left: 0, right: 0, background: brand.background })
+    .png().toFile(path.join(out, `${brand.walletHeroFilePrefix}-7-${count}.png`));
 }
 console.log('Created Acadeea logo formats and all eight 7 + reward progress states.');
