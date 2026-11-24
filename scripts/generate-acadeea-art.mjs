@@ -8,27 +8,24 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const brand = coffeePrograms.acadeea;
 const sourcePath = path.join(root, 'artwork-source/acadeea/acadeea-card-v7.png');
 const assets = path.join(root, 'public/acadeea/assets');
-const out = path.join(root, 'public/acadeea/wallet/v1/art/v2');
+const out = path.join(root, `public/acadeea/wallet/v1/art/${brand.walletArtVersion}`);
 await mkdir(assets, { recursive: true });
 await mkdir(out, { recursive: true });
 const source = await readFile(sourcePath);
 const { width, height } = await sharp(source).metadata();
 await copyFile(sourcePath, path.join(assets, 'approved-card-v7.png'));
 
-// Technical crops and sizes from the approved raster; the source stays intact.
-const wordmark = await sharp(source).extract({
-  left: Math.round(width * .30), top: Math.round(height * .009),
-  width: Math.round(width * .39), height: Math.round(height * .12),
-}).png().toBuffer();
-await sharp(wordmark).resize(1280, 400, { fit: 'contain', background: brand.background })
+// Use the official transparent wordmark instead of a textured illustration crop.
+// Transparent padding lets the Wallet card's background show through naturally.
+const wordmark = path.join(root, 'artwork-source/acadeea/brand/wordmark.png');
+await sharp(wordmark).resize(1280, 400, { fit: 'contain', background: '#00000000' })
   .png().toFile(path.join(out, 'wide-logo.png'));
 await copyFile(path.join(out, 'wide-logo.png'), path.join(assets, 'acadeea-logo.png'));
 await copyFile(path.join(out, 'wide-logo.png'), path.join(assets, 'wide-logo.png'));
-const logoSize = Math.round(width * .164);
-await sharp(source).extract({
-  left: Math.round(width * .799 - logoSize / 2),
-  top: Math.round(height * .881 - logoSize / 2), width: logoSize, height: logoSize,
-}).resize(660, 660).png().toFile(path.join(out, 'logo.png'));
+// The Passes list uses Acadeea's official browser-tab cupcake icon.
+await sharp(path.join(root, 'artwork-source/acadeea/brand/site-icon.png'))
+  .resize(660, 660).png().toFile(path.join(out, 'logo.png'));
+await copyFile(path.join(out, 'logo.png'), path.join(assets, 'notification-icon.png'));
 
 // Balance overlays use the same coffee/cookie/croissant sequence as the
 // approved artwork. The eighth circle stays pink, with no reward lettering.

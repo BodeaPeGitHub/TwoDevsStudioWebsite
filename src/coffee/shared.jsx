@@ -12,8 +12,8 @@ export function Icon({name,size=22,...props}) {
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name]||paths.coffee}</svg>;
 }
 export function CardPreview({coffees=0,threshold=7,assets='/coffee/assets',assetBase,name,small=false}) {
- const { name: programName, tagline } = useProgram();
- const prefix=assetBase?`${assetBase.replace(/\/$/,'')}/art/v2`:assets;
+ const { name: programName, tagline, walletArtVersion = 'v2' } = useProgram();
+ const prefix=assetBase?`${assetBase.replace(/\/$/,'')}/art/${walletArtVersion}`:assets;
  return <div className={`coffee-card ${small?'small':''}`}><img className="coffee-card-art" src={`${prefix}/stamps-${threshold}-${Math.min(coffees,threshold)}.png`} alt={`${programName}: ${coffees} din ${threshold} ștampile adunate; a opta cafea gratuită`}/><div className="coffee-card-values"><div><span>CAFELE ADUNATE</span><strong>{coffees} / {threshold}</strong></div><div><span>{coffees>=threshold?'RECOMPENSA TA':'PÂNĂ LA GRATUITĂ'}</span><strong>{coffees>=threshold?'O cafea gratuită!':`${Math.max(0,threshold-coffees)} ${threshold-coffees===1?'cafea':'cafele'}`}</strong></div></div><div className="coffee-card-foot"><span>{name||tagline}</span><span>{programName.toUpperCase()}</span></div></div>;
 }
 export function Scanner({onScan,onClose}) {

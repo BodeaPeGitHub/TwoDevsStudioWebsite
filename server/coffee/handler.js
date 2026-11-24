@@ -221,7 +221,7 @@ async function route(req, res, path, url, origin) {
       for (let start = 0; start <= threshold; start += 5) {
         await Promise.all(Array.from({length:Math.min(5,threshold-start+1)},async(_,index)=>{
           const count=start+index;
-          const r=await fetch(`${assetBase}/art/v2/stamps-${threshold}-${count}.png`,{method:'HEAD',signal:AbortSignal.timeout(4000)});
+          const r=await fetch(`${assetBase}/art/${program().walletArtVersion || 'v2'}/stamps-${threshold}-${count}.png`,{method:'HEAD',signal:AbortSignal.timeout(4000)});
           if(!r.ok||!r.headers.get('content-type')?.includes('image'))fail(`Lipsește imaginea pentru ${count}/${threshold}.`);
         }));
       }

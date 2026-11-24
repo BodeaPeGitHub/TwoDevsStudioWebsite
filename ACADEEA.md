@@ -17,6 +17,16 @@ node scripts/prepare-new-coffee-wallet.mjs --program acadeea
 
 The scoped setup preserves established secrets and never overwrites existing credentials. The Wallet setup saves the real Acadeea class configuration through the Vercel backend and signs out; it creates no test member or purchase. Private setup state stays in the ignored `.vercel` directory. A normal Git deployment must not rerun migrations or initialize credentials.
 
-Google Wallet class: `<issuer>.acadeea_coffee_club_v1`. Object IDs: `<issuer>.acadeea_<uuid>`. Artwork: `/acadeea/wallet/v1/art/v2/`. The versioned published assets should be treated as immutable. Google controls issuer approval, Wallet refresh timing and notification delivery.
+Google Wallet class: `<issuer>.acadeea_coffee_club_v1`. Object IDs: `<issuer>.acadeea_<uuid>`. Current artwork: `/acadeea/wallet/v1/art/v3/`. Version `v2` is preserved unchanged. Version `v3` uses the official transparent wordmark and cupcake favicon from Acadeea's website, avoiding a textured rectangle in the header and the unrelated cup icon in the Passes list. Source URLs are recorded in `artwork-source/acadeea/brand/SOURCES.md`. The approved card illustration and all stamp balances remain intact.
+
+The Acadeea template shows one concise progress label instead of combining it with a second reward-threshold label. Google controls the native/web layout: the web viewer places the full-size hero artwork below the card content, so a short screenshot may show only its upper edge. The image is published at Google's recommended 1032×812 dimensions. Do not crop it to a narrow banner to try to move it above the QR code.
+
+After deploying an intentional design update, refresh only Acadeea's existing Wallet objects through its authenticated backend, preserving balances and account IDs:
+
+```sh
+node scripts/prepare-new-coffee-wallet.mjs --program acadeea --refresh-design
+```
+
+The versioned published assets should be treated as immutable. Google controls issuer approval, Wallet refresh timing and notification delivery.
 
 Publish only by committing and pushing this repository to the existing Vercel GitHub integration. No tests or local validation commands are required or run unless the user requests them. IBRIC remains stopped; its data is preserved.

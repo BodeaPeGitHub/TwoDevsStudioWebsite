@@ -9,7 +9,7 @@ self.addEventListener('push', event => {
     typeof message.title === 'string' ? message.title.slice(0, 60) : 'Acadeea Club',
     {
       body: typeof message.body === 'string' ? message.body.slice(0, 1000) : 'Ai noutăți de la Acadeea.',
-      icon: '/acadeea/assets/acadeea-logo.png',
+      icon: '/acadeea/assets/notification-icon.png',
       badge: '/acadeea/push-badge.svg',
       tag: typeof message.tag === 'string' ? message.tag : 'acadeea-news',
       // A stable tag replaces retries of the same campaign in the notification tray.

@@ -18,7 +18,7 @@ export function walletPresentation(member, assetOrigin, brand = program()) {
       { id: 'reward-rule', header: 'Ritualul tău, răsplătit.', body: `Cumpără ${threshold} cafele și primești următoarea cafea din partea noastră. Arată QR-ul baristei la fiecare comandă. Numărătoarea se reia după folosirea recompensei.` },
     ],
   };
-  if (assetOrigin) fields.heroImage = image(`${assetBase(assetOrigin)}/art/v2/stamps-${threshold}-${Math.min(count,threshold)}.png`, earned ? 'Toate ștampilele adunate. Cafeaua gratuită este disponibilă.' : `${count} din ${threshold} ștampile adunate; ultima ceașcă reprezintă cafeaua gratuită.`);
+  if (assetOrigin) fields.heroImage = image(`${assetBase(assetOrigin)}/art/${brand.walletArtVersion || 'v2'}/stamps-${threshold}-${Math.min(count,threshold)}.png`, earned ? 'Toate ștampilele adunate. Cafeaua gratuită este disponibilă.' : `${count} din ${threshold} ștampile adunate; ultima ceașcă reprezintă cafeaua gratuită.`);
   return fields;
 }
 export function walletClassDesign(assetOrigin, brand = program()) {
@@ -35,8 +35,18 @@ export function walletClassDesign(assetOrigin, brand = program()) {
       } },
     ] } },
   };
+  if (brand.slug === 'acadeea') {
+    // One concise progress label avoids the tall "Cafele adunate / PRAG
+    // RECOMPENSĂ" heading above the artwork in the web pass viewer.
+    result.classTemplateInfo.cardTemplateOverride.cardRowTemplateInfos = [{
+      twoItems: {
+        startItem: field("object.textModulesData['acadeea-progress']"),
+        endItem: field('object.secondaryLoyaltyPoints.balance'),
+      },
+    }];
+  }
   if (assetOrigin) {
-    const base = `${assetBase(assetOrigin)}/art/v2`;
+    const base = `${assetBase(assetOrigin)}/art/${brand.walletArtVersion || 'v2'}`;
     result.programLogo = image(`${base}/logo.png`, `Logoul ${brand.brand}`);
     result.wideProgramLogo = image(`${base}/wide-logo.png`, brand.name);
   }
