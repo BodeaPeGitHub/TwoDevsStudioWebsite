@@ -6,7 +6,7 @@ self.addEventListener('push', event => {
   let message = {};
   try { message = event.data?.json() || {}; } catch { /* Still show a visible notification. */ }
   event.waitUntil(self.registration.showNotification(
-    typeof message.title === 'string' ? message.title.slice(0, 60) : 'Acadeea Coffee Club',
+    typeof message.title === 'string' ? message.title.slice(0, 60) : 'Acadeea Club',
     {
       body: typeof message.body === 'string' ? message.body.slice(0, 1000) : 'Ai noutăți de la Acadeea.',
       icon: '/acadeea/assets/acadeea-logo.png',

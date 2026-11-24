@@ -1,7 +1,7 @@
 // Public brand metadata only. Credentials and customer data never belong here.
 export const coffeePrograms = {
   acadeea: {
-    slug: 'acadeea', brand: 'Acadeea', name: 'Acadeea Coffee Club', envPrefix: 'ACADEEA', accountPrefix: 'ACADEEA',
+    slug: 'acadeea', brand: 'Acadeea', name: 'Acadeea Club', envPrefix: 'ACADEEA', accountPrefix: 'ACADEEA',
     threshold: 7, background: '#FFF2E3', ink: '#603615', accent: '#95613E',
     tagline: 'CAFEA & PATISERIE', artwork: 'acadeea-card-v7.png',
   },

@@ -1,4 +1,4 @@
-# Acadeea Coffee Club
+# Acadeea Club
 
 Customer page: `/acadeea`. Staff panel: `/acadeea/admin`. Acadeea uses the project-wide default admin password, stored as its own salted PBKDF2 hash, and a separate staff-session signing secret.
 
