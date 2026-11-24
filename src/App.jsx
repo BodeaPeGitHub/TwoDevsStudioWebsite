@@ -28,7 +28,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Suspense fallback={<div style={{minHeight:"100vh",background:"#faf8f1"}} />}><Routes>
-        {['letscoffee', 'orso', 'guau', 'brewkai'].flatMap(slug => [
+        {['letscoffee', 'orso', 'guau', 'brewkai', 'acadeea'].flatMap(slug => [
           <Route key={slug} path={`/${slug}`} element={<CoffeeProgram slug={slug}><CoffeeCustomer key={slug} apiBase={`/api/${slug}`} assets={`/${slug}/assets`} /></CoffeeProgram>} />,
           <Route key={`${slug}-admin`} path={`/${slug}/admin`} element={<CoffeeProgram slug={slug}><CoffeeAdmin key={slug} apiBase={`/api/${slug}`} basePath={`/${slug}`} assets={`/${slug}/assets`} /></CoffeeProgram>} />,
         ])}

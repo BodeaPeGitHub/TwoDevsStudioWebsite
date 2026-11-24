@@ -7,6 +7,12 @@
 .coffee-app.brewkai-app .coffee-card{transform:none;border-radius:16px}
 .coffee-app.brewkai-app .coffee-card-values{background:#fbefdccc}
 .coffee-app.brewkai-app .coffee-rule{color:#66513d}
+.coffee-app.acadeea-app{--ib-blue:#815232;--ib-dark:#603615;--ib-cream:#fff2e3;--ib-border:#e8d1bc;--ib-muted:#846c56;--coffee-hover:#664027}
+.coffee-app.acadeea-app .coffee-enrollment-content{max-width:460px}
+.coffee-app.acadeea-app .coffee-brand-logo{display:none}
+.coffee-app.acadeea-app .coffee-card{transform:none;border-radius:18px}
+.coffee-app.acadeea-app .coffee-card-values{background:#fff8f0}
+.coffee-app.acadeea-app .coffee-wordmark img{width:138px}
 .coffee-app.coffee-enrollment{background:var(--ib-cream)}
 .coffee-app .coffee-card{background:var(--ib-cream);color:var(--ib-dark);border:1px solid var(--ib-border);box-shadow:0 18px 42px #33221118}
 .coffee-app .coffee-card-values{padding:15px 22px 21px;border-top:1px solid var(--ib-border)}

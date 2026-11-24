@@ -1,5 +1,10 @@
 // Public brand metadata only. Credentials and customer data never belong here.
 export const coffeePrograms = {
+  acadeea: {
+    slug: 'acadeea', brand: 'Acadeea', name: 'Acadeea Coffee Club', envPrefix: 'ACADEEA', accountPrefix: 'ACADEEA',
+    threshold: 7, background: '#FFF2E3', ink: '#603615', accent: '#95613E',
+    tagline: 'CAFEA & PATISERIE', artwork: 'acadeea-card-v7.png',
+  },
   brewkai: {
     slug: 'brewkai', brand: 'BREWKAI', name: 'Brewkai Coffee Club', envPrefix: 'BREWKAI', accountPrefix: 'BREWKAI',
     threshold: 7, background: '#F9E7CB', ink: '#33291E', accent: '#B74428',

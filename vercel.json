@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/ibric-push",
+      "destination": "/api/ibric"
+    },
+    {
       "source": "/ibric",
       "destination": "/api/ibric"
     },
@@ -33,18 +37,20 @@
       "destination": "/api/brewkai?route=:path*"
     },
     {
+      "source": "/api/acadeea-push",
+      "destination": "/api/acadeea?route=worker"
+    },
+    {
+      "source": "/api/acadeea/:path*",
+      "destination": "/api/acadeea?route=:path*"
+    },
+    {
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
   ],
   "functions": {
     "api/ibric.js": {
-      "maxDuration": 90,
-      "regions": [
-        "arn1"
-      ]
-    },
-    "api/ibric-push.js": {
       "maxDuration": 90,
       "regions": [
         "arn1"
@@ -105,6 +111,12 @@
       ]
     },
     "api/brewkai-push.js": {
+      "maxDuration": 90,
+      "regions": [
+        "arn1"
+      ]
+    },
+    "api/acadeea.js": {
       "maxDuration": 90,
       "regions": [
         "arn1"
@@ -319,6 +331,41 @@
         {
           "key": "Service-Worker-Allowed",
           "value": "/brewkai"
+        }
+      ]
+    },
+    {
+      "source": "/acadeea/:path*",
+      "headers": [
+        {
+          "key": "Referrer-Policy",
+          "value": "no-referrer"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/acadeea/wallet/v1/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/acadeea/push-sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        },
+        {
+          "key": "Service-Worker-Allowed",
+          "value": "/acadeea"
         }
       ]
     }
